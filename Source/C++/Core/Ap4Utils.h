@@ -264,6 +264,8 @@ public:
     void         SkipBits(unsigned int bit_count);
 
     unsigned int GetBitsPosition();
+    
+    AP4_UI32 BitsLeft();
 
     unsigned int GetBitsRead();
 
