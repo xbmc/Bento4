@@ -162,6 +162,12 @@ AP4_TrunAtom::AP4_TrunAtom(AP4_UI32        size,
             if (bytes_left < 4 || AP4_FAILED(stream.ReadUI32(m_Entries[i].sample_duration))) {
                 return;;
             }
+            // Workaround for dazn streams, which provide 24 -> 1 sequences
+            if (i && m_Entries[i].sample_duration == 1 && m_Entries[i - 1].sample_duration > 1)
+            {
+                m_Entries[i].sample_duration = m_Entries[i - 1].sample_duration >> 1;
+                m_Entries[i - 1].sample_duration -= m_Entries[i].sample_duration;
+            }
             --record_fields_count;
             bytes_left -= 4;
         }
