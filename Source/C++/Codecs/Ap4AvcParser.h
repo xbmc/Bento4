@@ -323,6 +323,9 @@ public:
 
     void SetParameterControl(bool isKeep) { m_keepParameterSets = isKeep; }
 
+    static unsigned int ReadGolomb(AP4_BitReader& bits);
+    static int SignedGolomb(unsigned int code_num);
+
 private:
     // methods
     bool SameFrame(unsigned int nal_unit_type_1, unsigned int nal_ref_idc_1, AP4_AvcSliceHeader& sh1,
