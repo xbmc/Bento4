@@ -436,8 +436,7 @@ AP4_OmaDcfCtrSampleDecrypter::~AP4_OmaDcfCtrSampleDecrypter()
 |   AP4_OmaDcfCtrSampleDecrypter::DecryptSampleData
 +---------------------------------------------------------------------*/
 AP4_Result 
-AP4_OmaDcfCtrSampleDecrypter::DecryptSampleData(AP4_UI32 poolid,
-                                                AP4_DataBuffer& data_in,
+AP4_OmaDcfCtrSampleDecrypter::DecryptSampleData(AP4_DataBuffer& data_in,
                                                 AP4_DataBuffer& data_out,
                                                 const AP4_UI08* /*iv*/)
 {   
@@ -532,8 +531,7 @@ AP4_OmaDcfCbcSampleDecrypter::~AP4_OmaDcfCbcSampleDecrypter()
 |   AP4_OmaDbcCbcSampleDecrypter::DecryptSampleData
 +---------------------------------------------------------------------*/
 AP4_Result 
-AP4_OmaDcfCbcSampleDecrypter::DecryptSampleData(AP4_UI32 poolid,
-                                                AP4_DataBuffer& data_in,
+AP4_OmaDcfCbcSampleDecrypter::DecryptSampleData(AP4_DataBuffer& data_in,
                                                 AP4_DataBuffer& data_out,
                                                 const AP4_UI08* /*iv*/)
 {   
@@ -855,7 +853,7 @@ AP4_Result
 AP4_OmaDcfTrackDecrypter::ProcessSample(AP4_DataBuffer& data_in,
                                         AP4_DataBuffer& data_out)
 {
-    return m_Cipher->DecryptSampleData(0, data_in, data_out);
+    return m_Cipher->DecryptSampleData(data_in, data_out);
 }
 
 /*----------------------------------------------------------------------
