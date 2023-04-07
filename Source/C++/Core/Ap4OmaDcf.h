@@ -133,8 +133,7 @@ public:
     ~AP4_OmaDcfCtrSampleDecrypter();
 
     // methods
-    virtual AP4_Result DecryptSampleData(AP4_UI32 poolid,
-                                         AP4_DataBuffer& data_in,
+    virtual AP4_Result DecryptSampleData(AP4_DataBuffer& data_in,
                                          AP4_DataBuffer& data_out,
                                          const AP4_UI08* iv = NULL);
     virtual AP4_Size   GetDecryptedSampleSize(AP4_Sample& sample);
@@ -156,8 +155,7 @@ public:
     ~AP4_OmaDcfCbcSampleDecrypter();
 
     // methods
-    virtual AP4_Result DecryptSampleData(AP4_UI32 poolid,
-                                         AP4_DataBuffer& data_in,
+    virtual AP4_Result DecryptSampleData(AP4_DataBuffer& data_in,
                                          AP4_DataBuffer& data_out,
                                          const AP4_UI08* iv = NULL);
     virtual AP4_Size   GetDecryptedSampleSize(AP4_Sample& sample);
