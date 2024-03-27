@@ -691,7 +691,8 @@ public:
     // methods
     AP4_CencSingleSampleDecrypter(AP4_StreamCipher* cipher) :
         m_Cipher(cipher),
-        m_FullBlocksOnly(false) {}
+        m_FullBlocksOnly(false),
+        m_ParentIsOwner(true) {}
     virtual ~AP4_CencSingleSampleDecrypter();
     virtual AP4_Result DecryptSampleData(AP4_DataBuffer& data_in,
                                          AP4_DataBuffer& data_out,
@@ -706,7 +707,9 @@ public:
                                          const AP4_UI16* bytes_of_cleartext_data,
                                          
                                          // array of <subsample_count> integers. NULL if subsample_count is 0
-                                         const AP4_UI32* bytes_of_encrypted_data);  
+                                         const AP4_UI32* bytes_of_encrypted_data);
+    bool GetParentIsOwner()const { return m_ParentIsOwner; };
+    void SetParentIsOwner(bool parent_is_owner) { m_ParentIsOwner = parent_is_owner; };
     
 private:
     // constructor
@@ -715,12 +718,14 @@ private:
                                   bool              reset_iv_at_each_subsample) :
         m_Cipher(cipher),
         m_FullBlocksOnly(full_blocks_only),
-        m_ResetIvAtEachSubsample(reset_iv_at_each_subsample) {}
+        m_ResetIvAtEachSubsample(reset_iv_at_each_subsample),
+        m_ParentIsOwner(true) {}
 
     // members
     AP4_StreamCipher* m_Cipher;
     bool              m_FullBlocksOnly;
     bool              m_ResetIvAtEachSubsample;
+    bool              m_ParentIsOwner;
 };
 
 /*----------------------------------------------------------------------
