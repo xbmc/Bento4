@@ -14,9 +14,7 @@ function(get_bento4_version)
 endfunction()
 
 get_bento4_version()
-if(APPLE)
-  set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "")
-endif()
+
 project(bento4 VERSION "${BENTO4_VERSION}")
 
 # Variables
