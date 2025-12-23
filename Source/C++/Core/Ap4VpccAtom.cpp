@@ -82,16 +82,20 @@ AP4_VpccAtom::Create(AP4_Size size, AP4_ByteStream& stream)
     if (AP4_FAILED(result)) {
         return NULL;
     }
-    return new AP4_VpccAtom(profile,
-                            level,
-                            bit_depth,
-                            chroma_subsampling,
-                            video_full_range_flag,
-                            colour_primaries,
-                            transfer_characteristics,
-                            matrix_coefficients,
-                            codec_initialization_data.GetData(),
-                            codec_initialization_data.GetDataSize());
+
+    AP4_VpccAtom* atom = new AP4_VpccAtom(
+        profile, level, bit_depth, chroma_subsampling, video_full_range_flag, colour_primaries,
+        transfer_characteristics, matrix_coefficients, codec_initialization_data.GetData(),
+        codec_initialization_data.GetDataSize());
+
+    // store the data
+    stream.Seek(0);
+    AP4_DataBuffer bufferData;
+    bufferData.SetDataSize(payload_size);
+    stream.Read(bufferData.UseData(), bufferData.GetDataSize());
+    atom->SetData(bufferData);
+
+    return atom;
 }
 
 /*----------------------------------------------------------------------
