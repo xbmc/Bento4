@@ -2096,8 +2096,9 @@ AP4_CencSampleDecrypter::Create(AP4_CencSampleInfoTable*  sample_info_table,
 +---------------------------------------------------------------------*/
 AP4_CencSampleDecrypter::~AP4_CencSampleDecrypter()
 {
-	delete m_SampleInfoTable;
-	delete m_SingleSampleDecrypter;
+  delete m_SampleInfoTable;
+  if (m_SingleSampleDecrypter->GetParentIsOwner())
+    delete m_SingleSampleDecrypter;
 }
 
 /*----------------------------------------------------------------------
