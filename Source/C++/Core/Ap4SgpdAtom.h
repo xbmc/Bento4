@@ -56,7 +56,7 @@ public:
 
     // accessors
     
-private:
+protected:
     // methods
     AP4_SgpdAtom(AP4_UI32        size,
                  AP4_UI08        version,
